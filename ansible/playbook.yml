@@ -1,0 +1,7 @@
+- name: Розгортання Honeypot-системи
+  hosts: honeypot
+  become: yes
+  vars_files:
+    - vars.yml
+  roles:
+    - honeypot
