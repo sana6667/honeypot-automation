@@ -1,11 +1,11 @@
 - name: Копіювання Dockerfile
   copy:
     src: "{{ playbook_dir }}/../Dockerfile"
-    dest: /home/ubuntu/Dockerfile
+    dest: /home/student/Dockerfile
 - name: Копіювання шаблону конфігурації
   template:
     src: config.cfg.j2
-    dest: /home/ubuntu/cowrie.cfg
+    dest: /home/student/cowrie.cfg
 - name: Запуск контейнера honeypot
   shell: |
     docker build -t honeypot .
