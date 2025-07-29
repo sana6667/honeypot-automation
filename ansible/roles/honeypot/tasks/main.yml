@@ -1,12 +1,15 @@
 - name: Копіювання Dockerfile
+  become: true
   copy:
     src: "{{ playbook_dir }}/../Dockerfile"
     dest: /home/student/Dockerfile
 - name: Копіювання шаблону конфігурації
+  become: true
   template:
     src: config.cfg.j2
     dest: /home/student/cowrie.cfg
 - name: Запуск контейнера honeypot
+  become: true
   shell: |
     docker build -t honeypot .
     docker run -d --name honeypot -p 2222:2222 honeypot
