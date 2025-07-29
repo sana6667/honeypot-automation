@@ -6,12 +6,20 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/sana6667/honeypot-automation.git'
             }
+        }
 
+        stage('Діагностика') {
+            steps {
+                sh 'echo "Поточна директорія:"'
+                sh 'pwd'
+                sh 'echo "Вміст директорії:"'
+                sh 'ls -la'
+            }
         }
 
         stage('Лінт і тести') {
             steps {
-                sh 'ansible-playbook --syntax-check ansible/playbook.yml'
+                sh 'ansible-playbook --syntax-check ansible/playbook.yml -i ansible/inventory/hosts.ini'
                 sh 'ansible-playbook --check ansible/playbook.yml -i ansible/inventory/hosts.ini'
             }
         }
