@@ -12,4 +12,4 @@
   become: true
   shell: |
     docker build -t honeypot .
-    docker run -d --name honeypot -p 2222:2222 honeypot
+    docker run -dit --name honeypot -p 2222:2222 honeypot
