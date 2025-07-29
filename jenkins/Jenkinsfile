@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Клонування репозиторію') {
             steps {
-                git 'https://github.com/sana6667/honeypot-automation.git'
+                git 'https://github.com/sana6667/honeypot-automation.git', branch: 'main'
             }
         }
 
