@@ -4,20 +4,21 @@ pipeline {
     stages {
         stage('Клонування репозиторію') {
             steps {
-                git 'https://github.com/sana6667/honeypot-automation.git'
+                git branch: 'main', url: 'https://github.com/sana6667/honeypot-automation.git'
             }
+
         }
 
         stage('Лінт і тести') {
             steps {
                 sh 'ansible-playbook --syntax-check ansible/playbook.yml'
-                sh 'ansible-playbook --check ansible/playbook.yml -i ansible/inventory'
+                sh 'ansible-playbook --check ansible/playbook.yml -i ansible/inventory/hosts.ini'
             }
         }
 
         stage('Розгортання Honeypot') {
             steps {
-                sh 'ansible-playbook ansible/playbook.yml -i ansible/inventory'
+                sh 'ansible-playbook ansible/playbook.yml -i ansible/inventory/hosts.ini'
             }
         }
     }
